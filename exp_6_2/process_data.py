@@ -20,7 +20,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-# Run this file from the main directory as: python -m collision.process_data
+# Run this file from the main directory as: python -m exp_6_2.process_data
 
 from __future__ import absolute_import
 from __future__ import division

@@ -14,12 +14,26 @@ To run Experiment 6.2:
 	* `python -m exp_6_2.run_exp`
 	* `python -m exp_6_2.plot_exp`
 
+To run Experiment 6.3:
+
+1. Install the packages as for Exp 6.2.
+2. From the base directory:
+	* `python -m exp_6_3_mnist.train`
+	* `python -m exp_6_3_mnist.run_baseline`
+	* `python -m exp_6_3_mnist.run_exp`
+	* `python -m exp_6_3_mnist.plot_exp`
+
 ## Pertinent files
 
 * `/exp_6_2`
 	* `plot_exp.py` Produces Figures 1 and 4 from the paper for Experiment 6.2.
 	* `process_data.py` Converts the CollisionDetection property files into pickled objects and a summary file. Also produces naive MC estimates.
 	* `run_exp.py` Runs AMLS on the 500 properties to produce results for Experiment 6.1 and 6.2.
+* `/exp_6_3_mnist`
+	* `plot_exp.py` Produces the MNIST panel of Figure 2.
+	* `run_baseline.py` Produces naive MC estimates of adversarial properties of varying rareness.
+	* `run_exp.py` Runs AMLS on adversarial properties varying the hyperparameters to produce results for Ex 6.3.
+	* `train.py` Trains the simple feedforward classifier on MNIST.
 * `/plnn` A modified version of the [PLNN package](https://github.com/oval-group/PLNN-verification) with some bug fixes for the latest PyTorch.
 
 ## Notes
