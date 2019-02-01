@@ -26,6 +26,8 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
+CUDA = False
+
 import os
 import time
 import pickle
@@ -36,9 +38,10 @@ import os
 import time
 import pickle
 import numpy as np
-cuda_id = '0'
-os.environ['CUDA_DEVICE_ORDER'] = 'PCI_BUS_ID'
-os.environ['CUDA_VISIBLE_DEVICES'] = '{}'.format(cuda_id)
+if CUDA:
+  cuda_id = '0'
+  os.environ['CUDA_DEVICE_ORDER'] = 'PCI_BUS_ID'
+  os.environ['CUDA_VISIBLE_DEVICES'] = '{}'.format(cuda_id)
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -83,8 +86,11 @@ def save_data(filename, outputname):
   with open(f'./data/collisionDetection/{filename}', 'r') as f:
     layers_cpu, domain_cpu = load_and_simplify2(f)
   model = SimpleLinear(layers_cpu, domain_cpu)
-  model.cuda()
-  domain = torch.tensor(domain_cpu).cuda()
+  if CUDA:
+    model.cuda()
+    domain = domain_cpu.clone().detach().cuda()
+  else:
+    domain = domain_cpu.clone().detach()
 
   lg_p, max_val, count, total = brute_force(model, domain, count_iterations=10000)
 
@@ -94,8 +100,13 @@ def save_data(filename, outputname):
 def brute_force(model, domain, count_iterations=100):
   count_above = int(0)
   count_total = int(0)
-  low_params = domain[:,0].cuda()
-  high_params = domain[:,1].cuda()
+  if CUDA:
+    low_params = domain[:,0].cuda()
+    high_params = domain[:,1].cuda()
+  else:
+    low_params = domain[:,0]
+    high_params = domain[:,1]
+
   prior = dist.Uniform(low=low_params, high=high_params)
 
   count_particles = int(1000000)
@@ -144,7 +155,7 @@ for idx in range(500):
 with open(f'./data/collisionDetection/summary.pickle', 'wb') as handle:
   pickle.dump({'lg_ps':lg_ps, 'max_vals':max_vals, 'SATs':SATs, 'counts':counts, 'totals':totals}, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
-print(lg_ps)
+#print(lg_ps)
 
 #summary = pickle.load(open(f'../data/collisionDetection/summary.pickle', "rb" ))
 #for p, s in zip(summary['lg_ps'], summary['SATs']):

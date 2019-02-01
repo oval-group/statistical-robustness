@@ -1,0 +1,3 @@
+*.pyc
+/data/collisionDetection/*.pickle
+/gurobi.log
