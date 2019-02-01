@@ -6,9 +6,10 @@ Here you can find a [PyTorch](http://pytorch.org/) implementation of [Adaptive M
 
 To run Experiment 6.2:
 
-1. Install [Gurobi](https://www.gurobi.com). (This is required for the PLNN package to load, but is not actually used by the core code itself.)
-2. Activate Gurobi license.
-3. From the base directory:
+1. Install the Python package `seaborn`, and the latest versions of NumPy/PyTorch.
+2. Install [Gurobi](https://www.gurobi.com). (This is required for the PLNN package to load, but is not actually used by the core code itself.)
+3. Activate Gurobi license.
+4. From the base directory:
 	* `python -m exp_6_2.process_data`
 	* `python -m exp_6_2.run_exp`
 	* `python -m exp_6_2.plot_exp`
@@ -23,10 +24,11 @@ To run Experiment 6.2:
 
 ## Notes
 
-* The experiments of sections 6.2/6.3 in the paper are currently available. Please contact me if you would like to obtain the code for Section 6.1.
-* The code to run the experiments was not completely rerun due to the need for computational resources, so contact me if you are having trouble getting them to run.
+* The experiment of sections 6.2 in the paper is currently available. Please contact me if you would like to obtain the code for Section 6.1.
+* The code to run the experiments was not completely rerun due to the need for computational resources, so contact me if you are having trouble with them.
 * You may wish to modify the code to run the experiments so that it runs different values in parallel across multiple GPUs.
 
 ## TODO
 
+* Experiment code for Section 6.3.
 * Experiment code for Section 6.4.

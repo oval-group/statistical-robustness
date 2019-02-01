@@ -24,6 +24,8 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
+CUDA = True
+
 import os
 import time
 import pickle
@@ -33,9 +35,10 @@ import os
 import time
 import pickle
 import numpy as np
-cuda_id = '0'
-os.environ['CUDA_DEVICE_ORDER'] = 'PCI_BUS_ID'
-os.environ['CUDA_VISIBLE_DEVICES'] = '{}'.format(cuda_id)
+if CUDA:
+  cuda_id = '0'
+  os.environ['CUDA_DEVICE_ORDER'] = 'PCI_BUS_ID'
+  os.environ['CUDA_VISIBLE_DEVICES'] = '{}'.format(cuda_id)
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -69,12 +72,20 @@ def multilevel_uniform(
       count_mh_steps=100,
       width_proposal=0.01,
       debug=True, stats=False):
-  low_params = domain[:,0].cuda()
-  high_params = domain[:,1].cuda()
+  if CUDA:
+    low_params = domain[:,0].cuda()
+    high_params = domain[:,1].cuda()
+  else:
+    low_params = domain[:,0]
+    high_params = domain[:,1]
+
   prior = dist.Uniform(low=low_params, high=high_params)
 
   # Parameters
-  width_proposal = width_proposal*torch.ones(count_particles).cuda()
+  if CUDA:
+    width_proposal = width_proposal*torch.ones(count_particles).cuda()
+  else:
+    width_proposal = width_proposal*torch.ones(count_particles)
   count_max_levels = 500
   target_acc_ratio = 0.9
   max_width_proposal = 0.1
@@ -132,7 +143,11 @@ def multilevel_uniform(
     width_proposal = torch.cat((width_proposal, width_new), dim=0)
     
     #acc_ratio = torch.zeros(count_kill).cuda()
-    acc_ratio = torch.zeros(count_particles).cuda()
+    if CUDA:
+      acc_ratio = torch.zeros(count_particles).cuda()
+    else:
+      acc_ratio = torch.zeros(count_particles)
+
     for mh_idx in range(count_mh_steps):
       # Propose new sample
       #g_bottom = dist.Uniform(low=torch.max(low_params, x - width_proposal.unsqueeze(-1)), high=torch.min(high_params, x + width_proposal.unsqueeze(-1)))
@@ -179,18 +194,23 @@ def do_run(count_runs, property_id, rho, count_particles, count_mh_steps, debug=
   levels = []
 
   data = pickle.load(open(f'./data/collisionDetection/property{property_id}.pickle', "rb" ))
-  domain = torch.tensor(data['domain']).cuda()
+  if CUDA:
+    domain = torch.tensor(data['domain']).cuda()
+  else:
+    domain = torch.tensor(data['domain'])
 
   for idx in range(count_runs):
     print(f'run {idx}')
     model = SimpleLinear(data['layers'], data['domain'])
-    model.cuda()
+    if CUDA:
+      model.cuda()
     
     lg_p, max_val, _, l = multilevel_uniform(model, domain, rho=rho, count_particles=count_particles, count_mh_steps=count_mh_steps, debug=debug)
     lg_ps.append(lg_p)
     max_vals.append(max_val)
     levels.append(l)
-    torch.cuda.empty_cache()
+    if CUDA:
+      torch.cuda.empty_cache()
 
     if debug:
       print('lg_p', lg_p, 'max_val', max_val)
@@ -209,6 +229,7 @@ for property_id in range(0, 500):
     with torch.no_grad():
       print(f'Property {property_id} - UNSAT')
       do_run(count_runs=30, property_id=property_id, rho=0.1, count_particles=100000, count_mh_steps=100, debug=True)
+      #do_run(count_runs=30, property_id=property_id, rho=0.1, count_particles=10, count_mh_steps=100, debug=True)
   else:
     for rho in [0.1, 0.25, 0.5]:
       for count_particles in [1000, 10000, 100000]:
@@ -217,4 +238,5 @@ for property_id in range(0, 500):
             print(f'Property {property_id} - SAT')
             print(f'rho {rho}, count_particles {count_particles}, count_mh_steps {count_mh_steps}')
             do_run(count_runs=30, property_id=property_id, rho=rho, count_particles=count_particles, count_mh_steps=count_mh_steps, debug=True)
+            #do_run(count_runs=30, property_id=property_id, rho=rho, count_particles=10, count_mh_steps=count_mh_steps, debug=True)
             

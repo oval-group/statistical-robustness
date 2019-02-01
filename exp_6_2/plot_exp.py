@@ -66,7 +66,7 @@ fig.savefig(f'collision_exp_maxval.pdf', bbox_inches='tight')
 plt.close(fig)"""
 
 # Open the summary because we want to pick out certain properties!
-summary = pickle.load(open(f'../data/collisionDetection/summary.pickle', "rb" ))
+summary = pickle.load(open(f'./data/collisionDetection/summary.pickle', "rb" ))
 
 sat_idx = summary['SATs'] == True
 unsat_idx = summary['SATs'] == False
@@ -96,13 +96,13 @@ def extract_exp1_results():
     count_particles = 100000
     count_mh_steps = 100
     rho = 0.1
-    result = pickle.load(open(f'../results/collisionDetection/property_{property_id}_count_particles_{count_particles}_count_mh_steps_{count_mh_steps}_rho_{rho}.pickle', 'rb'))
+    result = pickle.load(open(f'./results/collisionDetection/property_{property_id}_count_particles_{count_particles}_count_mh_steps_{count_mh_steps}_rho_{rho}.pickle', 'rb'))
     max_vals.append(np.array(result['max_vals']))
     lg_ps.append(np.array(result['lg_ps']))
     naive_max_vals.append(summary['max_vals'][property_id])
     naive_lg_ps.append(summary['lg_ps'][property_id])
   
-  with open(f'../results/collisionDetection/extracted_exp1_results.pickle', 'wb') as handle:
+  with open(f'./results/collisionDetection/extracted_exp1_results.pickle', 'wb') as handle:
     pickle.dump({'lg_ps':lg_ps, 'max_vals': max_vals, 'naive_lg_ps': naive_lg_ps, 'naive_max_vals': naive_max_vals}, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
 def extract_exp2_results():
@@ -122,19 +122,19 @@ def extract_exp2_results():
 
           # Extract results from SAT properties
           ids.append(property_id)
-          result = pickle.load(open(f'../results/collisionDetection/property_{property_id}_count_particles_{count_particles}_count_mh_steps_{count_mh_steps}_rho_{rho}.pickle', 'rb'))
+          result = pickle.load(open(f'./results/collisionDetection/property_{property_id}_count_particles_{count_particles}_count_mh_steps_{count_mh_steps}_rho_{rho}.pickle', 'rb'))
           lg_ps.append(np.array(result['lg_ps']))
 
         results[(rho, count_particles, count_mh_steps)] = {'lg_ps':lg_ps, 'ids':ids}
 
-  with open(f'../results/collisionDetection/extracted_exp2_results.pickle', 'wb') as handle:
+  with open(f'./results/collisionDetection/extracted_exp2_results.pickle', 'wb') as handle:
     pickle.dump(results, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
 #extract_exp1_results()  
 #extract_exp2_results()
 
 def plot_exp1_results():
-  results = pickle.load(open('../results/collisionDetection/extracted_exp1_results.pickle', 'rb'))
+  results = pickle.load(open('./results/collisionDetection/extracted_exp1_results.pickle', 'rb'))
   # 'lg_ps':lg_ps, 'max_vals': max_vals, 'naive_lg_ps': naive_lg_ps, 'naive_max_vals': naive_max_vals
 
   lg_ps = np.array(results['lg_ps'])
@@ -217,7 +217,7 @@ def plot_exp1_results():
   plt.close(fig)
 
 def plot_exp2_results():
-  results = pickle.load(open('../results/collisionDetection/extracted_exp2_results.pickle', 'rb'))
+  results = pickle.load(open('./results/collisionDetection/extracted_exp2_results.pickle', 'rb'))
   sort_idx = None
   count_particles = 10000
 
@@ -284,7 +284,7 @@ def plot_exp2_results():
   plt.close(fig)
 
 def plot_exp2_error_rho():
-  results = pickle.load(open('../results/collisionDetection/extracted_exp2_results.pickle', 'rb'))
+  results = pickle.load(open('./results/collisionDetection/extracted_exp2_results.pickle', 'rb'))
   sort_idx = None
   count_particles = 10000
   mean_ps = {}
@@ -361,7 +361,7 @@ def plot_exp2_error_rho():
   plt.close(fig)
 
 def plot_exp2_error_M():
-  results = pickle.load(open('../results/collisionDetection/extracted_exp2_results.pickle', 'rb'))
+  results = pickle.load(open('./results/collisionDetection/extracted_exp2_results.pickle', 'rb'))
   sort_idx = None
   count_particles = 10000
   mean_ps = {}
