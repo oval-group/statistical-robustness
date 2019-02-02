@@ -22,7 +22,11 @@
 
 # Run this file from the main directory as: python -m exp_6_3_mnist.train
 
-CUDA = False
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+
+CUDA = True
 
 import os
 import time
@@ -40,7 +44,7 @@ import torch.distributions as dist
 from torch.utils.data import DataLoader, Dataset
 from torchvision import datasets, transforms
 
-from mnist.network import SimpleMlp
+from exp_6_3_mnist.network import SimpleMlp
 import utils
 
 def cm2inch(value):
@@ -128,7 +132,7 @@ def run():
       with torch.no_grad():
         test_loss, test_acc = test(epoch)
 
-      print("[epoch %03d]  train loss: %.5f, test loss: %.5f, , test acc: %.3f" % (epoch, train_loss, test_loss, test_acc))
+      print("[epoch %03d]  train loss: %.5f, test loss: %.5f, test acc: %.3f" % (epoch, train_loss, test_loss, test_acc))
 
   print("Training Done.")
   print(f"Final Loss: {test_loss}")

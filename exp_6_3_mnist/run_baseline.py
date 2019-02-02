@@ -22,7 +22,11 @@
 
 # Run this file from the main directory as: python -m exp_6_3_mnist.run_baseline
 
-CUDA = False
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+
+CUDA = True
 
 import os
 import time, math
@@ -142,17 +146,11 @@ def run(sigma, sample_id):
 
   with torch.no_grad():
     lg_p, max_val, count, total = brute_force(prop, x_sample, count_iterations=500000)
+    #lg_p, max_val, count, total = brute_force(prop, x_sample, count_iterations=10)
 
   with open(f'./results/mnist/sample_{sample_id}_sigma_{sigma}_uniform_brute.pickle', 'wb') as handle:
     pickle.dump({'lg_p':lg_p, 'max_val': max_val, 'count':count, 'total':total}, handle, protocol=pickle.HIGHEST_PROTOCOL)
   print('sample', sample_id, 'sigma', sigma, 'lg_p', lg_p, 'max_val', max_val, 'count', count, 'total', total)
 
-#for sample_id in range(10):
-#  for sigma in [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]:
-#    run(sigma, sample_id)
-
-#for sigma in reversed([0.75, 0.7916667, 0.833333, 0.875, 0.9375, 1.0, 1.125, 1.250, 1.375, 1.5]):
-#for sigma in [1.5]:
-#  run(sigma, 0)
-
-run(1.125, 0)
+for sigma in reversed([0.75, 0.7916667, 0.833333, 0.875, 0.9375, 1.0, 1.125, 1.250, 1.375, 1.5]):
+  run(sigma, 0)

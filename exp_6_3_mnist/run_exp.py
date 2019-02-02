@@ -22,11 +22,11 @@
 
 # Run this file from the main directory as: python -m exp_6_3_mnist.run_exp
 
-CUDA = False
-
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
+
+CUDA = True
 
 import os
 import time
@@ -59,7 +59,6 @@ import seaborn as sns
 plt.style.use(['seaborn-white', 'seaborn-paper', 'seaborn-ticks'])
 matplotlib.rc('font', family='Latin Modern Roman')
 
-from collision.network import SimpleLinear
 from plnn.model import load_and_simplify2
 import utils
 
