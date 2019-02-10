@@ -4,3 +4,6 @@
 /data/raw
 /data/processed
 /data/mnist_simplemlp.pickle
+/data/cifar-10-batches-py
+/data/cifar10_simplemlp.pickle
+/data/cifar-10-python.tar.gz

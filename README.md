@@ -4,7 +4,7 @@ Here you can find a [PyTorch](http://pytorch.org/) implementation of [Adaptive M
 
 ## Instructions
 
-To run Experiment 6.2:
+### Experiment 6.2:
 
 1. Install the Python package `seaborn`, and the latest versions of `NumPy`/`PyTorch`.
 2. Install [Gurobi](https://www.gurobi.com). (This is required for the PLNN package to load, but is not actually used by the core code itself.)
@@ -14,7 +14,7 @@ To run Experiment 6.2:
 	* `python -m exp_6_2.run_exp`
 	* `python -m exp_6_2.plot_exp`
 
-To run Experiment 6.3:
+### Experiment 6.3:
 
 1. Install the packages as for Exp 6.2.
 2. From the base directory:
@@ -22,6 +22,8 @@ To run Experiment 6.3:
 	* `python -m exp_6_3_mnist.run_baseline`
 	* `python -m exp_6_3_mnist.run_exp`
 	* `python -m exp_6_3_mnist.plot_exp`
+
+Repeat for CIFAR10 by replacing `mnist` with `cifar10`.
 
 ## Pertinent files
 
@@ -36,13 +38,15 @@ To run Experiment 6.3:
 	* `train.py` Trains the simple feedforward classifier on MNIST.
 * `/plnn` A modified version of the [PLNN package](https://github.com/oval-group/PLNN-verification) with some bug fixes for the latest PyTorch.
 
+The directory `/exp_6_3_cifar10` is analogous to `exp_6_3_mnist`.
+
 ## Notes
 
-* The experiment of sections 6.2 in the paper is currently available. Please contact me if you would like to obtain the code for Section 6.1.
+* Please contact me if you would like to obtain the code for Section 6.1.
 * The code to run the experiments was not completely rerun due to the need for computational resources, so contact me if you are having trouble with them.
-* You may wish to modify the code to run the experiments so that it runs different values in parallel across multiple GPUs.
+* You may wish to modify the code so that it runs different combinations of hyperparamaters in parallel across multiple GPUs to reduce the total experiment time.
 
 ## TODO
 
-* Experiment code for Section 6.3.
+* Experiment code for Section 6.3 CIFAR100.
 * Experiment code for Section 6.4.
