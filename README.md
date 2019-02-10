@@ -14,7 +14,7 @@ Here you can find a [PyTorch](http://pytorch.org/) implementation of [Adaptive M
 	* `python -m exp_6_2.run_exp`
 	* `python -m exp_6_2.plot_exp`
 
-### Experiment 6.3:
+### Experiment 6.3 MNIST/CIFAR10:
 
 1. Install the packages as for Exp 6.2.
 2. From the base directory:
@@ -24,6 +24,18 @@ Here you can find a [PyTorch](http://pytorch.org/) implementation of [Adaptive M
 	* `python -m exp_6_3_mnist.plot_exp`
 
 Repeat for CIFAR10 by replacing `mnist` with `cifar10`.
+
+### Experiment 6.3 CIFAR100:
+
+This experiment uses a pretrained DenseNet contained in the repo.
+
+1. Install the packages as for Exp 6.2.
+2. From the base directory:
+	* `python -m exp_6_3_cifar100.run_baseline`
+	* `python -m exp_6_3_cifar100.run_exp`
+	* `python -m exp_6_3_cifar100.plot_exp`
+
+### Experiment 6.3 CIFAR100:
 
 ## Pertinent files
 
@@ -38,7 +50,7 @@ Repeat for CIFAR10 by replacing `mnist` with `cifar10`.
 	* `train.py` Trains the simple feedforward classifier on MNIST.
 * `/plnn` A modified version of the [PLNN package](https://github.com/oval-group/PLNN-verification) with some bug fixes for the latest PyTorch.
 
-The directory `/exp_6_3_cifar10` is analogous to `exp_6_3_mnist`.
+The directories `/exp_6_3_cifar10` and `/exp_6_3_cifar100` are analogous to `exp_6_3_mnist`.
 
 ## Notes
 
@@ -48,5 +60,4 @@ The directory `/exp_6_3_cifar10` is analogous to `exp_6_3_mnist`.
 
 ## TODO
 
-* Experiment code for Section 6.3 CIFAR100.
 * Experiment code for Section 6.4.
