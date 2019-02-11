@@ -75,7 +75,3 @@ The directories `/exp_6_3_cifar10` and `/exp_6_3_cifar100` are analogous to `exp
 * Please contact me if you would like to obtain the code for Section 6.1.
 * The code to run the experiments was not completely rerun due to the need for computational resources, so contact me if you are having trouble with them.
 * You may wish to modify the code so that it runs different combinations of hyperparamaters in parallel across multiple GPUs to reduce the total experiment time.
-
-## TODO
-
-* Experiment code for Section 6.4.
