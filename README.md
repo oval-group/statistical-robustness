@@ -41,10 +41,12 @@ From the base directory:
 1. Train the network by the standard method:
 	* `python -m exp_6_4.train --epochs 100 --starting_epsilon 0.01 --prefix mnist --schedule_length 50 --method 'baseline' --cuda_ids '0'`
 2. Continue training by the robust method:
-	* `python -m exp_6_4.train --epochs 100 --starting_epsilon 0.01 --prefix 'mnist_robustified' --schedule_length 50 --method 'robust' --cuda_ids '5' --model_snapshot './snapshots/mnist_baseline_batch_size_50_epochs_100_lr_0.001_opt_adam_real_time_False_seed_0_checkpoint_99.pth'`
+	* `python -m exp_6_4.train --epochs 100 --starting_epsilon 0.01 --prefix 'mnist_robustified' --schedule_length 50 --method 'robust' --cuda_ids '0' --model_snapshot './snapshots/mnist_baseline_batch_size_50_epochs_100_lr_0.001_opt_adam_real_time_False_seed_0_checkpoint_99.pth'`
 3. Run and plot the experiment:
 	* `python -m exp_6_4.run_exp`
 	* `python -m exp_6_4.plot_exp`
+
+Change `--cuda_ids` to your desired GPU card index.
 
 ## Pertinent files
 
