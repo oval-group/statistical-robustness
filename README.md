@@ -12,17 +12,17 @@ For all experiments:
 ### Experiment 6.2 Ablation Study:
 
 From the base directory:
-	* `python -m exp_6_2.process_data`
-	* `python -m exp_6_2.run_exp`
-	* `python -m exp_6_2.plot_exp`
+* `python -m exp_6_2.process_data`
+* `python -m exp_6_2.run_exp`
+* `python -m exp_6_2.plot_exp`
 
 ### Experiment 6.3 MNIST/CIFAR10:
 
 From the base directory:
-	* `python -m exp_6_3_mnist.train`
-	* `python -m exp_6_3_mnist.run_baseline`
-	* `python -m exp_6_3_mnist.run_exp`
-	* `python -m exp_6_3_mnist.plot_exp`
+* `python -m exp_6_3_mnist.train`
+* `python -m exp_6_3_mnist.run_baseline`
+* `python -m exp_6_3_mnist.run_exp`
+* `python -m exp_6_3_mnist.plot_exp`
 
 Repeat for CIFAR10 by replacing `mnist` with `cifar10`.
 
@@ -31,9 +31,9 @@ Repeat for CIFAR10 by replacing `mnist` with `cifar10`.
 This experiment uses a pretrained DenseNet contained in the repo.
 
 From the base directory:
-	* `python -m exp_6_3_cifar100.run_baseline`
-	* `python -m exp_6_3_cifar100.run_exp`
-	* `python -m exp_6_3_cifar100.plot_exp`
+* `python -m exp_6_3_cifar100.run_baseline`
+* `python -m exp_6_3_cifar100.run_exp`
+* `python -m exp_6_3_cifar100.plot_exp`
 
 ### Experiment 6.4 Robust Training:
 
