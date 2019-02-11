@@ -60,9 +60,9 @@ Change `--cuda_ids` to your desired GPU card index.
 	* `run_exp.py` Runs AMLS on adversarial properties varying the hyperparameters to produce results for Ex 6.3.
 	* `train.py` Trains the simple feedforward classifier on MNIST.
 * `/exp_6_4`
-	
-	*	`train.py` Trains the network using standard or robust training.
 	* `plot_exp.py` Produces Figures 3 and 5.
+	* `run_exp.py` Runs AMLS on the trained snapshots.
+	*	`train.py` Trains the network using standard or robust training, saving snapshots.
 * `/plnn` A modified version of the [PLNN package](https://github.com/oval-group/PLNN-verification) with some bug fixes for the latest PyTorch.
 * `/convex_adversarial` A modified version of the [convex_adversarial package](https://github.com/locuslab/convex_adversarial).
 
